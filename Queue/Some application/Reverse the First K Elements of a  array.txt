@@ -1,0 +1,2 @@
+Reverse the First K Elements of a Queue.
+• Task: Given a queue of integers and an integer k, reverse the order of the first k elements while leaving the remaining elements in the same relative order.
