@@ -1,5 +1,5 @@
 package tree;
-
+import java.util.Scanner;
 
 class node{
 	int data;
@@ -12,7 +12,6 @@ class node{
 		right=null;
 	}
 }
-
 
 class Tree_class{
 	
@@ -87,15 +86,11 @@ class Tree_class{
 		return count_leaf(r.left)+count_leaf(r.right);
 		}
 	}
-	
 	int depth(node r) {
-		if(r == null) {
-			return 0 ;
+		if (r == null) {
+			return 0;
 		}
-		else if(r.left==null && r.right==null)
-			return 1;
-		else 
-			return 1+Math.max(depth(r.left), depth(r.right));
+		return 1 + Math.max(depth(r.left), depth(r.right));
 	}
 	
 	boolean search(node r , int key) {
@@ -126,35 +121,87 @@ class Tree_class{
 	}
 }
 public class Tree_ADT {
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+	        Tree_class tree = new Tree_class();
+	        int choice;
 
-	public static void main(String[] args) {
-		Tree_class a = new Tree_class();
-		a.insert(a.root, new node(20));
-		a.insert(a.root, new node(30));
-		a.insert(a.root, new node(10));
-		a.insert(a.root, new node(50));
-		a.insert(a.root, new node(40));
-		
-		a.inorder(a.root);
-		System.out.print("\n----------------------\n");
-		a.preOrder(a.root);
-		System.out.print("\n----------------------\n");
-		a.PostOrder(a.root);
-		
-		
-		System.out.println("total nodes :"+ a.countNodes(a.root));
-		
-		
-		System.out.println("leaf :" + a.count_leaf(a.root));
-		
-		System.out.println("depth :"+(a.depth(a.root)-1));
-		
-		
-		System.out.println(a.search(a.root, 23));
-		
-		
-		System.out.println(a.findSum(a.root));
+	        do {
+	            System.out.println("\n--- Binary Tree Menu ---");
+	            System.out.println("1. Insert a node");
+	            System.out.println("2. Inorder Traversal");
+	            System.out.println("3. Preorder Traversal");
+	            System.out.println("4. Postorder Traversal");
+	            System.out.println("5. Count Nodes");
+	            System.out.println("6. Count Leaf Nodes");
+	            System.out.println("7. Tree Depth");
+	            System.out.println("8. Search for a node");
+	            System.out.println("9. Sum of all nodes");
+	            System.out.println("0. Exit");
+	            System.out.print("Enter your choice: ");
+	            choice = sc.nextInt();
 
+	            switch (choice) {
+	                case 1:
+	                    System.out.print("Enter value to insert: ");
+	                    int val = sc.nextInt();
+	                    tree.insert(tree.root, new node(val));
+	                    break;
+
+	                case 2:
+	                    System.out.print("Inorder Traversal: ");
+	                    tree.inorder(tree.root);
+	                    System.out.println();
+	                    break;
+
+	                case 3:
+	                    System.out.print("Preorder Traversal: ");
+	                    tree.preOrder(tree.root);
+	                    System.out.println();
+	                    break;
+
+	                case 4:
+	                    System.out.print("Postorder Traversal: ");
+	                    tree.PostOrder(tree.root);
+	                    System.out.println();
+	                    break;
+
+	                case 5:
+	                    System.out.println("Total nodes: " + tree.countNodes(tree.root));
+	                    break;
+
+	                case 6:
+	                    System.out.println("Leaf nodes: " + tree.count_leaf(tree.root));
+	                    break;
+
+	                case 7:
+	                    System.out.println("Tree depth: " + tree.depth(tree.root));
+	                    break;
+
+	                case 8:
+	                    System.out.print("Enter value to search: ");
+	                    int key = sc.nextInt();
+	                    boolean found = tree.search(tree.root, key);
+	                    if (found) {
+	                        System.out.println("Node found!");
+	                    } else {
+	                        System.out.println("Node not found.");
+	                    }
+	                    break;
+
+	                case 9:
+	                    System.out.println("Sum of all nodes: " + tree.findSum(tree.root));
+	                    break;
+
+	                case 0:
+	                    System.out.println("Exiting program.");
+	                    break;
+
+	                default:
+	                    System.out.println("Invalid choice. Try again.");
+	            }
+	        } while (choice != 0);
+
+	        sc.close();
+	    }
 	}
-
-}
